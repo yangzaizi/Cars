@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowStateListener;
+
 import javax.swing.JApplet;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -87,8 +89,8 @@ public class Cars extends JApplet implements ActionListener {
 		private int yPosition;
 		private double speed;
 		private int MAX_WIDTH;
-		private int delay = 100;
-		private int delay2 = 40;
+		private int delay = 200;
+		private int delay2 = 80;
 		private Wheels wheel;
 
 		private Timer timer = new Timer(delay, new Animation());; // timer for
@@ -166,9 +168,11 @@ public class Cars extends JApplet implements ActionListener {
 
 		/** speed up the car */
 		protected final void speedUp() {
-			if (delay >= 0)
+			if(delay==0 || delay2==0)
+				return;
+			if (delay >=10)
 				delay -= 10;
-			if (delay2 >= 0)
+			if (delay2 >= 15)
 				delay2 -= 15;
 			timer.setDelay(delay);
 			timer2.setDelay(delay2);
